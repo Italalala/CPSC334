@@ -27,7 +27,7 @@ void setup(){
 
 void draw(){
   pressReading=myClient.read();
-  picNum = 51*(pressReading-pressMin)/(pressMax-pressMin);
+  picNum = int(51*(pressReading-pressMin)/(pressMax-pressMin));
   image(pics[picNum],0,0,width,height);
 }
 
