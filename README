@@ -25,6 +25,7 @@ Hot glue
 Masking tape
 Pink plastic foam
 22 gauge single electric wire, in red, black and grey
+120 kiloOhm resistor
 
 *How it works*
 The ESP32 is powered by the Lipo battery. It runs current through a circuit and reads out the voltage values across a voltage divider.
