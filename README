@@ -1,0 +1,38 @@
+--SMILES--
+
+*Introduction*
+The SMILES device is an interactive sculpture consisting of two free-standing surfaces, a wall and a floor.
+A hand emerges from a hole in the floor.
+A small screen is pressed against a hole in the wall from the inside, facing out at the audience.
+The audience touches the two outstretched fingers of the hand, and the screen in the wall lights up.
+The screen shows the bottom of a face, and the audience understands that there is a person stuck behind the wall, reaching out
+towards them through the floor.
+The face seems neutral to the first gentle touch, but as the audience explores the range of pressure and qualities of touch, the face
+laughs with the joy of companionship. But if the audience should press too strongly, the face contorts into a grimacing frown.
+
+*Hardware*
+An ESP32 microcontroller
+A Raspberry Pi 3B+
+An Arducam 2.5 inch display for Raspberry Pi
+Rechargeable 3.7V Lipo battery
+
+*Other materials*
+Cardboard
+Fabric
+Ink
+Sculpture wire
+Hot glue
+Masking tape
+Pink plastic foam
+22 gauge single electric wire, in red, black and grey
+
+*How it works*
+The ESP32 is powered by the Lipo battery. It runs current through a circuit and reads out the voltage values across a voltage divider.
+The circuit at rest is broken by a gap between two lengths of copper tape, each affixed to the end of one of the outstretched fingers.
+When the audience touches the fingers, the current is connected, and the ESP32 reads non-zero voltages. The better the quality of the
+contact, ie. the firmer the viewer presses on the fingers, the higher the voltage the ESP32 reads. The ESP32 hosts a local wifi network
+and broadcasts the voltages as UDP messages that are read by a Processing 3 sketch on a Raspberry Pi 3B+, with a mounted display, held
+against the inside of the wall construction. The Processing sketch first runs a ten-second callibration, to test the highest values it can
+receive, and then using that maximum, it maps the voltage reading to an integer in range 0 to 51.
+The Processing sketch has been loaded with 51 images of a mouth transitioning from rest to smile to laughter to frown to grimace.
+Corresponding to the mapped voltage value, it displays one of these images at a time, full screen on the Pi.
